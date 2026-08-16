@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import '../css/CartPage.css';
 
 export default function CartPage() {
@@ -8,10 +8,10 @@ export default function CartPage() {
     const token = localStorage.getItem('token');
 
     // Fetch cart
-    const fetchCart = async () => {
+    const fetchCart = useCallback(async () => {
         try {
             const response = await fetch(
-                'http://localhost:5000/api/cart',
+                'https://e-commerce-3x03.onrender.com/api/cart',
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -28,18 +28,18 @@ export default function CartPage() {
         } finally {
             setLoading(false);
         }
-    };
+    }, [token]);
 
     useEffect(() => {
         fetchCart();
-    }, []);
+    }, [fetchCart]);
 
     // Update quantity
     const updateQuantity = async (productId, quantity) => {
         if (quantity < 1) return;
 
         await fetch(
-            'http://localhost:5000/api/cart/update',
+            'https://e-commerce-3x03.onrender.com/api/cart/update',
             {
                 method: 'PUT',
                 headers: {
@@ -59,7 +59,7 @@ export default function CartPage() {
     // Remove item
     const removeItem = async (productId) => {
         await fetch(
-            `http://localhost:5000/api/cart/remove/${productId}`,
+            `https://e-commerce-3x03.onrender.com/api/cart/remove/${productId}`,
             {
                 method: 'DELETE',
                 headers: {

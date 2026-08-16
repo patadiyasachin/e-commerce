@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../adminCss/AdminProducts.css";
 
@@ -13,14 +13,14 @@ export default function AdminProducts() {
     const token = localStorage.getItem("token");
 
 
-    const fetchProducts = async () => {
+    const fetchProducts = useCallback(async () => {
 
         try {
 
             setLoading(true);
 
             const response = await fetch(
-                "http://localhost:5000/api/admin/product/all",
+                "https://e-commerce-3x03.onrender.com/api/admin/product/all",
                 {
                     method: "GET",
 
@@ -53,7 +53,7 @@ export default function AdminProducts() {
             setLoading(false);
 
         }
-    };
+    }, [token]);
 
     const filterProd = (e) => {
 
@@ -72,7 +72,7 @@ export default function AdminProducts() {
 
         fetchProducts();
 
-    }, []);
+    }, [fetchProducts]);
 
 
     const handleDelete = async (id) => {
@@ -90,7 +90,7 @@ export default function AdminProducts() {
         try {
 
             const response = await fetch(
-                `http://localhost:5000/api/admin/product/delete/${id}`,
+                `https://e-commerce-3x03.onrender.com/api/admin/product/delete/${id}`,
                 {
                     method: "DELETE",
 

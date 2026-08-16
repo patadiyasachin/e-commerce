@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Register() {
@@ -19,7 +19,7 @@ export default function Register() {
 
         try {
             const response = await fetch(
-                'http://localhost:5000/api/auth/register',
+                'https://e-commerce-3x03.onrender.com/api/auth/register',
                 {
                     method: 'POST',
                     headers: {

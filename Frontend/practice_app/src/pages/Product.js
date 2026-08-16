@@ -9,7 +9,7 @@ export default function Product() {
     const token = localStorage.getItem('token');
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/product/getAllProduct', {
+        fetch('https://e-commerce-3x03.onrender.com/api/product/getAllProduct', {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -22,7 +22,7 @@ export default function Product() {
             .catch((err) => {
                 console.log(err);
             });
-    }, []);
+    }, [token]);
 
     return (
         <div className="shop-page">

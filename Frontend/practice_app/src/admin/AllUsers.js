@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useCallback, useEffect, useState } from "react";
 import "../adminCss/AdminProducts.css";
 
 export default function AllUsers() {
@@ -8,18 +7,16 @@ export default function AllUsers() {
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const navigate = useNavigate();
-
     const token = localStorage.getItem("token");
 
-    const fetchUsers = async () => {
+    const fetchUsers = useCallback(async () => {
 
         try {
 
             setLoading(true);
 
             const response = await fetch(
-                "http://localhost:5000/api/admin/user/allUser",
+                "https://e-commerce-3x03.onrender.com/api/admin/user/allUser",
                 {
                     method: "GET",
 
@@ -52,14 +49,14 @@ export default function AllUsers() {
             setLoading(false);
 
         }
-    };
+    }, [token]);
 
 
     useEffect(() => {
 
         fetchUsers();
 
-    }, []);
+    }, [fetchUsers]);
 
 
     if (loading) {

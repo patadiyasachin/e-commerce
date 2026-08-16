@@ -46,7 +46,7 @@ export default function AddProduct() {
 
 
             const response = await fetch(
-                "http://localhost:5000/api/admin/product/add",
+                "https://e-commerce-3x03.onrender.com/api/admin/product/add",
                 {
                     method: "POST",
 

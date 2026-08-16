@@ -15,7 +15,7 @@ export default function ProductDetail() {
         const token = localStorage.getItem('token');
 
         const response = await fetch(
-            'http://localhost:5000/api/cart/add',
+            'https://e-commerce-3x03.onrender.com/api/cart/add',
             {
                 method: 'POST',
                 headers: {
@@ -35,7 +35,7 @@ export default function ProductDetail() {
     };
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/product/getProductById/${id}`, {
+        fetch(`https://e-commerce-3x03.onrender.com/api/product/getProductById/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -46,7 +46,7 @@ export default function ProductDetail() {
                 setProduct(data);
             })
             .catch((err) => console.log(err));
-    }, [id]);
+    }, [id, token]);
 
     if (!product) {
         return (
