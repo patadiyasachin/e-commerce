@@ -39,8 +39,8 @@ export default function AdminProducts() {
                 );
             }
 
-            setProducts(data.product || []);
-            setfilterProducts(data.product)
+            setProducts(data.products || []);
+            setfilterProducts(data.products)
 
         } catch (error) {
 

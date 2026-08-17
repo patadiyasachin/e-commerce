@@ -94,7 +94,7 @@ export default function AllUsers() {
         try {
 
             const response = await fetch(
-                `http://localhost:5000/api/admin/user/deleteUser/${id}`,
+                `https://e-commerce-3x03.onrender.com/api/admin/user/deleteUser/${id}`,
                 {
                     method: "DELETE",
 

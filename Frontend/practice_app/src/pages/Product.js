@@ -3,7 +3,6 @@ import '../css/Product.css';
 import "../adminCss/ProductForm.css";
 import { useNavigate } from 'react-router-dom';
 
-
 export default function Product() {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
@@ -67,26 +66,6 @@ export default function Product() {
 
         navigate("/login");
     };
-
-    // if (fetchLoading) {
-
-    //     return (
-
-    //         <div className="product-form-page">
-
-    //             <div className="loading-container">
-
-    //                 <h2>
-    //                     Loading product...
-    //                 </h2>
-
-    //             </div>
-
-    //         </div>
-
-    //     );
-
-    // }
 
     return (
         <div className="shop-page">
