@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import '../css/Product.css';
 import "../adminCss/ProductForm.css";
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +9,7 @@ export default function Product() {
     const [fetchLoading, setFetchLoading] = useState(false);
     const token = localStorage.getItem('token');
 
-    const fetchProducts = async () => {
+    const fetchProducts = useCallback(async () => {
         try {
             setFetchLoading(true);
             const response = await fetch('https://e-commerce-3x03.onrender.com/api/product/getAllProduct',
@@ -53,12 +53,12 @@ export default function Product() {
             setFetchLoading(false);
 
         }
-    }
+    }, [token, navigate]);
 
 
     useEffect(() => {
         fetchProducts()
-    }, [token]);
+    }, [fetchProducts]);
 
     const logout = () => {
         localStorage.removeItem("token");

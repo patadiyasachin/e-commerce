@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../adminCss/AdminProducts.css";
 
 export default function AdminProducts() {
-    const { id } = useParams();
     const [products, setProducts] = useState([]);
     const [filterProducts, setfilterProducts] = useState([]);
     const [loading, setLoading] = useState(true);
