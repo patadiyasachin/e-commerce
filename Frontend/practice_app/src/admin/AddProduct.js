@@ -1,13 +1,16 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useCallback, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "../adminCss/ProductForm.css";
 
 export default function AddProduct() {
 
     const navigate = useNavigate();
 
+    const { id } = useParams();
+
     const token = localStorage.getItem("token");
 
+    const isEditMode = Boolean(id);
 
     const [formData, setFormData] = useState({
 
@@ -23,58 +26,43 @@ export default function AddProduct() {
 
     const [loading, setLoading] = useState(false);
 
+    const [fetchLoading, setFetchLoading] = useState(false);
 
     const handleChange = (event) => {
 
         const { name, value } = event.target;
 
         setFormData((previous) => ({
+
             ...previous,
+
             [name]: value
+
         }));
 
     };
 
+    const fetchProductByID = useCallback(async () => {
 
-    const handleSubmit = async (event) => {
-
-        event.preventDefault();
+        if (!id) {
+            return;
+        }
 
         try {
 
-            setLoading(true);
+            setFetchLoading(true);
 
 
             const response = await fetch(
-                "https://e-commerce-3x03.onrender.com/api/admin/product/add",
+                `http://localhost:5000/api/admin/product/${id}`,
                 {
-                    method: "POST",
+                    method: "GET",
 
                     headers: {
                         "Content-Type": "application/json",
+
                         Authorization: `Bearer ${token}`,
                     },
-
-                    body: JSON.stringify({
-
-                        title: formData.title,
-
-                        description:
-                            formData.description,
-
-                        price:
-                            Number(formData.price),
-
-                        image:
-                            formData.image,
-
-                        category:
-                            formData.category,
-
-                        stock:
-                            Number(formData.stock),
-
-                    }),
                 }
             );
 
@@ -86,18 +74,196 @@ export default function AddProduct() {
 
                 throw new Error(
                     data.message ||
-                    "Failed to add product"
+                    "Failed to fetch product"
                 );
 
             }
 
 
-            alert(
-                "Product added successfully"
-            );
+            console.log("Product:", data);
 
+
+            const product = data.product;
+
+            setFormData({
+
+                title: product?.title || "",
+
+                description:
+                    product?.description || "",
+
+                price:
+                    product?.price ?? "",
+
+                image:
+                    product?.image || "",
+
+                category:
+                    product?.category || "",
+
+                stock:
+                    product?.stock ?? "",
+
+            });
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert(error.message);
 
             navigate("/admin/products");
+
+        } finally {
+
+            setFetchLoading(false);
+
+        }
+
+    }, [id, token, navigate]);
+
+
+    useEffect(() => {
+
+        if (isEditMode) {
+
+            fetchProductByID();
+
+        }
+
+    }, [isEditMode, fetchProductByID]);
+
+
+    const handleSubmit = async (event) => {
+
+        event.preventDefault();
+
+        try {
+
+            setLoading(true);
+
+            if (!isEditMode) {
+
+                const response = await fetch(
+                    "http://localhost:5000/api/admin/product/add",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json",
+
+                            Authorization:
+                                `Bearer ${token}`,
+                        },
+
+                        body: JSON.stringify({
+
+                            title:
+                                formData.title,
+
+                            description:
+                                formData.description,
+
+                            price:
+                                Number(formData.price),
+
+                            image:
+                                formData.image,
+
+                            category:
+                                formData.category,
+
+                            stock:
+                                Number(formData.stock),
+
+                        }),
+                    }
+                );
+
+
+                const data = await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message ||
+                        "Failed to add product"
+                    );
+
+                }
+
+
+                alert(
+                    "Product added successfully"
+                );
+
+
+                navigate("/admin/products");
+
+            }
+
+            else {
+
+                const response = await fetch(
+                    `http://localhost:5000/api/admin/product/update/${id}`,
+                    {
+                        method: "PUT",
+
+                        headers: {
+                            "Content-Type": "application/json",
+
+                            Authorization:
+                                `Bearer ${token}`,
+                        },
+
+                        body: JSON.stringify({
+
+                            title:
+                                formData.title,
+
+                            description:
+                                formData.description,
+
+                            price:
+                                Number(formData.price),
+
+                            image:
+                                formData.image,
+
+                            category:
+                                formData.category,
+
+                            stock:
+                                Number(formData.stock),
+
+                        }),
+                    }
+                );
+
+
+                const data = await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message ||
+                        "Failed to update product"
+                    );
+
+                }
+
+
+                alert(
+                    "Product updated successfully"
+                );
+
+
+                navigate("/admin/products");
+
+            }
 
 
         } catch (error) {
@@ -114,6 +280,26 @@ export default function AddProduct() {
 
     };
 
+    if (fetchLoading) {
+
+        return (
+
+            <div className="product-form-page">
+
+                <div className="loading-container">
+
+                    <h2>
+                        Loading product...
+                    </h2>
+
+                </div>
+
+            </div>
+
+        );
+
+    }
+
 
     return (
 
@@ -123,16 +309,28 @@ export default function AddProduct() {
 
                 <div>
 
-                    <h1>Add Product</h1>
+                    <h1>
+
+                        {isEditMode
+                            ? "Edit Product"
+                            : "Add Product"}
+
+                    </h1>
+
 
                     <p>
-                        Add a new product to your store
+
+                        {isEditMode
+
+                            ? "Update product information"
+
+                            : "Add a new product to your store"}
+
                     </p>
 
                 </div>
 
             </div>
-
 
             <form
                 className="product-form"
@@ -147,15 +345,19 @@ export default function AddProduct() {
 
                     <input
                         type="text"
+
                         name="title"
+
                         value={formData.title}
+
                         onChange={handleChange}
+
                         placeholder="Enter product name"
+
                         required
                     />
 
                 </div>
-
 
                 <div className="form-group">
 
@@ -165,19 +367,22 @@ export default function AddProduct() {
 
                     <textarea
                         name="description"
-                        value={
-                            formData.description
-                        }
+
+                        value={formData.description}
+
                         onChange={handleChange}
+
                         placeholder="Enter product description"
+
                         rows="5"
+
                         required
                     />
 
                 </div>
 
-
                 <div className="form-row">
+
 
                     <div className="form-group">
 
@@ -187,11 +392,17 @@ export default function AddProduct() {
 
                         <input
                             type="number"
+
                             name="price"
+
                             value={formData.price}
+
                             onChange={handleChange}
+
                             placeholder="₹0"
+
                             min="0"
+
                             required
                         />
 
@@ -206,11 +417,17 @@ export default function AddProduct() {
 
                         <input
                             type="number"
+
                             name="stock"
+
                             value={formData.stock}
+
                             onChange={handleChange}
+
                             placeholder="0"
+
                             min="0"
+
                             required
                         />
 
@@ -218,8 +435,8 @@ export default function AddProduct() {
 
                 </div>
 
-
                 <div className="form-row">
+
 
                     <div className="form-group">
 
@@ -229,12 +446,15 @@ export default function AddProduct() {
 
                         <input
                             type="text"
+
                             name="category"
-                            value={
-                                formData.category
-                            }
+
+                            value={formData.category}
+
                             onChange={handleChange}
+
                             placeholder="Electronics"
+
                             required
                         />
 
@@ -249,12 +469,15 @@ export default function AddProduct() {
 
                         <input
                             type="url"
+
                             name="image"
-                            value={
-                                formData.image
-                            }
+
+                            value={formData.image}
+
                             onChange={handleChange}
+
                             placeholder="https://..."
+
                             required
                         />
 
@@ -262,16 +485,14 @@ export default function AddProduct() {
 
                 </div>
 
-
                 <div className="form-actions">
-
                     <button
                         type="button"
+
                         className="cancel-btn"
+
                         onClick={() =>
-                            navigate(
-                                "/admin/products"
-                            )
+                            navigate("/admin/products")
                         }
                     >
                         Cancel
@@ -280,19 +501,31 @@ export default function AddProduct() {
 
                     <button
                         type="submit"
+
                         className="save-btn"
+
                         disabled={loading}
                     >
+
                         {loading
-                            ? "Adding..."
-                            : "Add Product"}
+
+                            ? isEditMode
+                                ? "Updating..."
+                                : "Adding..."
+
+                            : isEditMode
+                                ? "Update Product"
+                                : "Add Product"}
+
                     </button>
 
                 </div>
+
 
             </form>
 
         </div>
 
     );
+
 }

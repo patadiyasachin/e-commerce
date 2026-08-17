@@ -79,6 +79,61 @@ export default function AllUsers() {
         setFilteredUsers(result);
     }
 
+    const handleDelete = async (id) => {
+
+        const confirmDelete =
+            window.confirm(
+                "Are you sure you want to delete this user?"
+            );
+
+        if (!confirmDelete) {
+            return;
+        }
+
+
+        try {
+
+            const response = await fetch(
+                `http://localhost:5000/api/admin/user/deleteUser/${id}`,
+                {
+                    method: "DELETE",
+
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+
+            const data = await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.message || "Delete failed"
+                );
+
+            }
+
+
+            alert("User deleted successfully");
+
+            setFilteredUsers((previousUsers) =>
+                previousUsers.filter(
+                    (user) =>
+                        user._id !== id
+                )
+            );
+        } catch (error) {
+
+            console.error(error);
+
+            alert(error.message);
+
+        }
+    };
+
     return (
 
         <div className="products-page">
@@ -199,11 +254,11 @@ export default function AllUsers() {
                                             <div className="action-buttons">
                                                 <button
                                                     className="delete-btn"
-                                                // onClick={() =>
-                                                //     handleDelete(
-                                                //         product._id
-                                                //     )
-                                                // }
+                                                    onClick={() =>
+                                                        handleDelete(
+                                                            u._id
+                                                        )
+                                                    }
                                                 >
                                                     Delete
                                                 </button>
