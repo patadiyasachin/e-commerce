@@ -10,7 +10,7 @@ export default function AdminDashboard() {
         const token = localStorage.getItem("token")
         try {
             setLoading(true)
-            const response = await fetch("http://localhost:5000/api/admin/product/getDashboardData",
+            const response = await fetch("https://e-commerce-3x03.onrender.com/api/admin/product/getDashboardData",
                 {
                     method: "GET",
 
