@@ -1,6 +1,7 @@
 const express = require('express');
 
 const Product = require('../models/product');
+const User = require('../models/user')
 
 const authMiddleware = require('../middleware/authMiddleware');
 const adminMiddleware = require('../middleware/adminMiddleware');
@@ -31,6 +32,23 @@ router.get('/all', authMiddleware, adminMiddleware, async (req, res) => {
 
         res.status(200).json({
             products
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message: error.message
+        });
+    }
+})
+
+router.get('/getDashboardData', authMiddleware, adminMiddleware, async (req, res) => {
+    try {
+        const totalProducts = await Product.countDocuments();
+        const totalUsers = await User.countDocuments();
+
+        res.status(200).json({
+            totalProducts,
+            totalUsers
         });
     } catch (err) {
         console.log(err);
