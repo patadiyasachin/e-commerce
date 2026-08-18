@@ -1,7 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../adminCss/AdminDashboard.css";
+import "../adminCss/AdminProducts.css";
 
 export default function AdminDashboard() {
+    const [dashboardData, setDashboardData] = useState({})
+    const [loading, setLoading] = useState(true)
+
+    const fetchDashboardData = async () => {
+        const token = localStorage.getItem("token")
+        try {
+            setLoading(true)
+            const response = await fetch("http://localhost:5000/api/admin/product/getDashboardData",
+                {
+                    method: "GET",
+
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
+            const data = await response.json()
+            setDashboardData(data)
+        } catch (error) {
+            console.error("Error fetching dashboard data:", error);
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    useEffect(() => {
+        fetchDashboardData()
+    }, [])
+
+    if (loading) {
+
+        return (
+            <div className="admin-loading">
+                Loading ...
+            </div>
+        );
+
+    }
 
     return (
         <div>
@@ -29,7 +69,7 @@ export default function AdminDashboard() {
 
                     <div>
                         <span>Total Products</span>
-                        <h2>125</h2>
+                        <h2>{dashboardData.totalProducts}</h2>
                     </div>
 
                 </div>
@@ -43,7 +83,7 @@ export default function AdminDashboard() {
 
                     <div>
                         <span>Total Users</span>
-                        <h2>850</h2>
+                        <h2>{dashboardData.totalUsers}</h2>
                     </div>
 
                 </div>
