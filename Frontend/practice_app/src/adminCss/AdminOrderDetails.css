@@ -1,0 +1,247 @@
+.admin-detail-page {
+    width: 100%;
+    color: #1f2937;
+}
+
+.admin-detail-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.admin-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.admin-detail-header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.admin-back-btn {
+    background: transparent;
+    border: 1px solid #d1d5db;
+    color: #4b5563;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.admin-back-btn:hover {
+    background: #f3f4f6;
+}
+
+/* Detail Card Grid */
+.admin-detail-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+.admin-detail-card {
+    background: white;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    padding: 24px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.admin-detail-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #4b5563;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Customer Card */
+.customer-details-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.customer-detail-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.customer-detail-item span.lbl {
+    color: #6b7280;
+}
+
+.customer-detail-item span.val {
+    font-weight: 600;
+    color: #111827;
+}
+
+/* Address Block */
+.address-details-block {
+    line-height: 1.6;
+    color: #374151;
+    font-size: 14px;
+}
+
+/* Update Panel Form */
+.update-status-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.update-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.update-field-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+.update-field-group select {
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+.update-submit-btn {
+    background: #4f46e5;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+
+.update-submit-btn:hover:not(:disabled) {
+    background: #4338ca;
+}
+
+.update-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Toast Message */
+.toast-notification {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.toast-notification.success {
+    background-color: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.toast-notification.error {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+/* Order Details Items List */
+.admin-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.admin-item-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px;
+    border: 1px solid #f3f4f6;
+    border-radius: 10px;
+}
+
+.admin-item-img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    padding: 4px;
+}
+
+.admin-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.admin-item-info h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.admin-item-info p {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.admin-item-subtotal {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111827;
+}
+
+/* Price Breakdown Details */
+.admin-totals-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.admin-breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #4b5563;
+}
+
+.admin-breakdown-row.grand-total {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 12px;
+    margin-top: 4px;
+}
+
+@media (max-width: 900px) {
+    .admin-detail-grid {
+        grid-template-columns: 1fr;
+    }
+}

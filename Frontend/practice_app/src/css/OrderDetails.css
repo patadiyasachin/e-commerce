@@ -1,0 +1,370 @@
+.details-page {
+    min-height: 100vh;
+    background: #0f172a;
+    color: white;
+    padding: 40px 20px;
+}
+
+.details-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.details-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.back-link-btn {
+    background: transparent;
+    border: 1px solid #334155;
+    color: #cbd5e1;
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.back-link-btn:hover {
+    background: #334155;
+    color: white;
+}
+
+/* Page Grid */
+.details-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+.details-card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 20px;
+    padding: 24px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.details-card:last-child {
+    margin-bottom: 0;
+}
+
+.details-card h2 {
+    font-size: 20px;
+    font-weight: 600;
+    border-bottom: 1px solid #334155;
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+}
+
+/* Order Header Meta */
+.order-header-meta {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.meta-item span.label {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+.meta-item span.val {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* Timeline */
+.timeline-card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 20px;
+    padding: 30px 20px;
+    margin-bottom: 30px;
+}
+
+.tracking-timeline {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin: 30px 0 10px;
+}
+
+/* Horizontal Line connecting steps */
+.tracking-timeline::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 4%;
+    right: 4%;
+    height: 3px;
+    background: #334155;
+    z-index: 1;
+}
+
+.timeline-progress-line {
+    position: absolute;
+    top: 20px;
+    left: 4%;
+    height: 3px;
+    background: #22c55e;
+    z-index: 2;
+    transition: width 0.4s ease;
+}
+
+.timeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 3;
+    position: relative;
+    width: 14%;
+}
+
+.step-bubble {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #1e293b;
+    border: 3px solid #334155;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 15px;
+    color: #94a3b8;
+    transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+}
+
+.timeline-step.active .step-bubble {
+    border-color: #2563eb;
+    background: #0f172a;
+    color: #60a5fa;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+}
+
+.timeline-step.completed .step-bubble {
+    border-color: #22c55e;
+    background: #22c55e;
+    color: white;
+}
+
+.step-label {
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    color: #94a3b8;
+    white-space: normal;
+}
+
+.timeline-step.active .step-label {
+    color: #60a5fa;
+    font-weight: 600;
+}
+
+.timeline-step.completed .step-label {
+    color: #cbd5e1;
+}
+
+/* Cancelled State Card */
+.cancelled-banner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid #ef4444;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.cancelled-icon {
+    font-size: 32px;
+    color: #ef4444;
+}
+
+.cancelled-info h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #f87171;
+    margin-bottom: 4px;
+}
+
+.cancelled-info p {
+    font-size: 14px;
+    color: #cbd5e1;
+}
+
+/* Items List */
+.details-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.details-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 16px;
+}
+
+.details-item-img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    background: white;
+    border-radius: 10px;
+    padding: 6px;
+}
+
+.details-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.details-item-info h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.details-item-info p {
+    font-size: 14px;
+    color: #94a3b8;
+}
+
+.details-item-price {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: right;
+}
+
+/* Pricing Breakdown Row */
+.pricing-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.pricing-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    color: #cbd5e1;
+}
+
+.pricing-row.grand-total {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    border-top: 1px solid #334155;
+    padding-top: 16px;
+    margin-top: 6px;
+}
+
+/* Cancel Button */
+.cancel-order-btn {
+    width: 100%;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid #ef4444;
+    color: #f87171;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.2s;
+}
+
+.cancel-order-btn:hover:not(:disabled) {
+    background: #ef4444;
+    color: white;
+}
+
+.cancel-order-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Responsive Grid and Timeline */
+@media (max-width: 900px) {
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .tracking-timeline {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 20px;
+        margin-top: 10px;
+        gap: 20px;
+    }
+    
+    .tracking-timeline::before {
+        top: 0;
+        bottom: 0;
+        left: 31px;
+        width: 3px;
+        height: auto;
+    }
+    
+    .timeline-progress-line {
+        top: 0;
+        left: 31px;
+        width: 3px;
+        height: 0; /* will be calculated by styling */
+        transition: height 0.4s ease;
+    }
+    
+    .timeline-step {
+        flex-direction: row;
+        width: 100%;
+        gap: 16px;
+        align-items: center;
+    }
+    
+    .step-bubble {
+        width: 26px;
+        height: 26px;
+        font-size: 11px;
+        border-width: 2px;
+    }
+    
+    .step-label {
+        margin-top: 0;
+        text-align: left;
+    }
+}

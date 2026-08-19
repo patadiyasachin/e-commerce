@@ -4,11 +4,17 @@ import Register from './pages/Register';
 import Product from './pages/Product';
 import ProductDetail from './pages/ProductDetail';
 import CartPage from './pages/CartPage';
+import Checkout from './pages/Checkout';
+import OrderSuccess from './pages/OrderSuccess';
+import Orders from './pages/Orders';
+import OrderDetails from './pages/OrderDetails';
 import AdminLayout from "./admin/AdminLayout";
 import AdminDashboard from "./admin/AdminDashboard";
 import AdminProducts from "./admin/AdminProducts";
 import AddProduct from "./admin/AddProduct";
 import AllUsers from "./admin/AllUsers";
+import AdminOrders from "./admin/AdminOrders";
+import AdminOrderDetails from "./admin/AdminOrderDetails";
 
 function ProtectedRoute({ children }) {
   const token = localStorage.getItem('token');
@@ -43,11 +49,39 @@ export default function App() {
           </ProtectedRoute>
         } />
 
+        <Route path="/checkout" element={
+          <ProtectedRoute>
+            <Checkout />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/order-success/:id" element={
+          <ProtectedRoute>
+            <OrderSuccess />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/orders" element={
+          <ProtectedRoute>
+            <Orders />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/orders/:id" element={
+          <ProtectedRoute>
+            <OrderDetails />
+          </ProtectedRoute>
+        } />
+
         {/* admin */}
 
         <Route
           path="/admin"
-          element={<AdminLayout />}
+          element={
+            <ProtectedRoute>
+              <AdminLayout />
+            </ProtectedRoute>
+          }
         >
 
           <Route
@@ -68,6 +102,16 @@ export default function App() {
           <Route
             path="products/edit/:id"
             element={<AddProduct />}
+          />
+
+          <Route
+            path="orders"
+            element={<AdminOrders />}
+          />
+
+          <Route
+            path="orders/:id"
+            element={<AdminOrderDetails />}
           />
 
           <Route

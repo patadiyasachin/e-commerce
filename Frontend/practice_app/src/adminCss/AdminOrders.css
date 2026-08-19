@@ -1,0 +1,287 @@
+.admin-orders-page {
+    width: 100%;
+    color: #1f2937;
+}
+
+/* Statistics Grid */
+.admin-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.admin-stat-card {
+    background: white;
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.admin-stat-card .stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.admin-stat-card .stat-icon.purple { background: #f5f3ff; color: #7c3aed; }
+.admin-stat-card .stat-icon.blue { background: #eff6ff; color: #2563eb; }
+.admin-stat-card .stat-icon.indigo { background: #e0e7ff; color: #4f46e5; }
+.admin-stat-card .stat-icon.green { background: #f0fdf4; color: #16a34a; }
+.admin-stat-card .stat-icon.orange { background: #fff7ed; color: #ea580c; }
+.admin-stat-card .stat-icon.red { background: #fef2f2; color: #dc2626; }
+
+.admin-stat-card span {
+    color: #6b7280;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.admin-stat-card h2 {
+    margin: 4px 0 0;
+    color: #111827;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/* Main Container */
+.admin-orders-container {
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+/* Toolbar and Controls */
+.admin-toolbar {
+    padding: 20px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-filters-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+}
+
+.search-wrapper {
+    flex: 1;
+    min-width: 250px;
+    position: relative;
+}
+
+.search-wrapper input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.search-wrapper input:focus {
+    border-color: #4f46e5;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+.filter-group select {
+    padding: 10px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 14px;
+    color: #1f2937;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.filter-group select:focus {
+    border-color: #4f46e5;
+}
+
+/* Table Design */
+.admin-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.admin-orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.admin-orders-table th {
+    background: #f9fafb;
+    padding: 14px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #4b5563;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-orders-table td {
+    padding: 16px 20px;
+    font-size: 14px;
+    color: #1f2937;
+    border-bottom: 1px solid #f3f4f6;
+    vertical-align: middle;
+}
+
+.admin-orders-table tr:hover td {
+    background-color: #f9fafb;
+}
+
+.customer-info-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.customer-name {
+    font-weight: 600;
+    color: #111827;
+}
+
+.customer-email {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.admin-items-cell {
+    max-width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Actions */
+.admin-action-btn {
+    background: #eff6ff;
+    color: #2563eb;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.admin-action-btn:hover {
+    background: #2563eb;
+    color: white;
+}
+
+/* Admin Status Badges */
+.admin-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 99px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.admin-badge.status-pending { background: #fef9c3; color: #854d0e; }
+.admin-badge.status-confirmed { background: #dbeafe; color: #1e40af; }
+.admin-badge.status-processing { background: #f3e8ff; color: #6b21a8; }
+.admin-badge.status-shipped { background: #ecfeff; color: #155e75; }
+.admin-badge.status-out-for-delivery { background: #ffedd5; color: #9a3412; }
+.admin-badge.status-delivered { background: #dcfce7; color: #166534; }
+.admin-badge.status-cancelled { background: #fee2e2; color: #991b1b; }
+
+.admin-badge.pay-pending { background: #ffedd5; color: #c2410c; }
+.admin-badge.pay-paid { background: #dcfce7; color: #15803d; }
+.admin-badge.pay-failed { background: #fee2e2; color: #b91c1c; }
+.admin-badge.pay-refunded { background: #f3e8ff; color: #7e22ce; }
+
+/* Empty, Loading, and Error */
+.admin-loading,
+.admin-error,
+.admin-empty {
+    padding: 40px;
+    text-align: center;
+    font-size: 16px;
+    color: #6b7280;
+}
+
+.admin-error button,
+.admin-empty button {
+    margin-top: 14px;
+    padding: 8px 16px;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Responsive Cards for Mobile Admin Orders */
+@media (max-width: 900px) {
+    .admin-orders-table th,
+    .admin-orders-table td {
+        display: none;
+    }
+    
+    .admin-orders-table, 
+    .admin-orders-table tbody, 
+    .admin-orders-table tr, 
+    .admin-orders-table td {
+        display: block;
+        width: 100%;
+    }
+    
+    .admin-orders-table tr {
+        border-bottom: 8px solid #f3f4f6;
+        padding: 16px;
+    }
+    
+    .admin-orders-table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: none;
+        font-size: 14px;
+    }
+    
+    .admin-orders-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #4b5563;
+    }
+    
+    .admin-orders-table td.actions-cell {
+        margin-top: 8px;
+        border-top: 1px dashed #e5e7eb;
+        padding-top: 12px;
+    }
+    
+    .admin-action-btn {
+        width: 100%;
+        text-align: center;
+    }
+}

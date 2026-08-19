@@ -1,0 +1,163 @@
+.success-page {
+    min-height: 100vh;
+    background: #0f172a;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.success-card {
+    max-width: 600px;
+    width: 100%;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 24px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Checkmark Animation CSS only */
+.success-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    background: rgba(34, 197, 94, 0.1);
+    border: 3px solid #22c55e;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 24px;
+    position: relative;
+    animation: scaleIn 0.5s ease-out forwards;
+}
+
+.success-icon {
+    font-size: 40px;
+    color: #22c55e;
+    animation: checkPop 0.3s 0.5s ease-out both;
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes checkPop {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.success-card h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #22c55e;
+}
+
+.success-card p.sub {
+    font-size: 16px;
+    color: #94a3b8;
+    margin-bottom: 30px;
+}
+
+.success-details {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+.detail-row:last-child {
+    margin-bottom: 0;
+}
+
+.detail-row span.label {
+    color: #94a3b8;
+}
+
+.detail-row span.val {
+    font-weight: 600;
+    color: white;
+}
+
+.detail-row.address-row {
+    flex-direction: column;
+    gap: 6px;
+    border-top: 1px solid #334155;
+    padding-top: 12px;
+    margin-top: 12px;
+}
+
+.address-row span.val {
+    font-weight: 400;
+    line-height: 1.5;
+    color: #cbd5e1;
+}
+
+.success-actions {
+    display: flex;
+    gap: 16px;
+}
+
+.success-btn {
+    flex: 1;
+    padding: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s;
+}
+
+.success-btn.primary {
+    background: #2563eb;
+    color: white;
+}
+
+.success-btn.primary:hover {
+    background: #1d4ed8;
+}
+
+.success-btn.secondary {
+    background: transparent;
+    border: 1px solid #334155;
+    color: #cbd5e1;
+}
+
+.success-btn.secondary:hover {
+    background: #334155;
+    color: white;
+}
+
+@media (max-width: 480px) {
+    .success-actions {
+        flex-direction: column;
+    }
+}

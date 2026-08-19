@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import "../adminCss/AdminProducts.css";
+import { API_BASE_URL } from "../config";
 
 export default function AllUsers() {
 
@@ -16,7 +17,7 @@ export default function AllUsers() {
             setLoading(true);
 
             const response = await fetch(
-                "https://e-commerce-3x03.onrender.com/api/admin/user/allUser",
+                `${API_BASE_URL}/api/admin/user/allUser`,
                 {
                     method: "GET",
 
@@ -94,7 +95,7 @@ export default function AllUsers() {
         try {
 
             const response = await fetch(
-                `https://e-commerce-3x03.onrender.com/api/admin/user/deleteUser/${id}`,
+                `${API_BASE_URL}/api/admin/user/deleteUser/${id}`,
                 {
                     method: "DELETE",
 

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../adminCss/ProductForm.css";
+import { API_BASE_URL } from "../config";
 
 export default function AddProduct() {
 
@@ -54,7 +55,7 @@ export default function AddProduct() {
 
 
             const response = await fetch(
-                `https://e-commerce-3x03.onrender.com/api/admin/product/${id}`,
+                `${API_BASE_URL}/api/admin/product/${id}`,
                 {
                     method: "GET",
 
@@ -146,7 +147,7 @@ export default function AddProduct() {
             if (!isEditMode) {
 
                 const response = await fetch(
-                    "https://e-commerce-3x03.onrender.com/api/admin/product/add",
+                    `${API_BASE_URL}/api/admin/product/add`,
                     {
                         method: "POST",
 
@@ -207,7 +208,7 @@ export default function AddProduct() {
             else {
 
                 const response = await fetch(
-                    `https://e-commerce-3x03.onrender.com/api/admin/product/update/${id}`,
+                    `${API_BASE_URL}/api/admin/product/update/${id}`,
                     {
                         method: "PUT",
 

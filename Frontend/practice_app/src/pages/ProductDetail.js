@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../css/ProductDetail.css';
+import { API_BASE_URL } from '../config';
 
 export default function ProductDetail() {
     const { id } = useParams();
@@ -15,7 +16,7 @@ export default function ProductDetail() {
         const token = localStorage.getItem('token');
 
         const response = await fetch(
-            'https://e-commerce-3x03.onrender.com/api/cart/add',
+            `${API_BASE_URL}/api/cart/add`,
             {
                 method: 'POST',
                 headers: {
@@ -35,7 +36,7 @@ export default function ProductDetail() {
     };
 
     useEffect(() => {
-        fetch(`https://e-commerce-3x03.onrender.com/api/product/getProductById/${id}`, {
+        fetch(`${API_BASE_URL}/api/product/getProductById/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }

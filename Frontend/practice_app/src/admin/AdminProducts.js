@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../adminCss/AdminProducts.css";
+import { API_BASE_URL } from "../config";
 
 export default function AdminProducts() {
     const [products, setProducts] = useState([]);
@@ -19,7 +20,7 @@ export default function AdminProducts() {
             setLoading(true);
 
             const response = await fetch(
-                "https://e-commerce-3x03.onrender.com/api/admin/product/all",
+                `${API_BASE_URL}/api/admin/product/all`,
                 {
                     method: "GET",
 
@@ -90,7 +91,7 @@ export default function AdminProducts() {
         try {
 
             const response = await fetch(
-                `https://e-commerce-3x03.onrender.com/api/admin/product/delete/${id}`,
+                `${API_BASE_URL}/api/admin/product/delete/${id}`,
                 {
                     method: "DELETE",
 

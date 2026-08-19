@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import '../css/Product.css';
 import "../adminCss/ProductForm.css";
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../config';
 
 export default function Product() {
     const navigate = useNavigate();
@@ -12,7 +13,7 @@ export default function Product() {
     const fetchProducts = useCallback(async () => {
         try {
             setFetchLoading(true);
-            const response = await fetch('https://e-commerce-3x03.onrender.com/api/product/getAllProduct',
+            const response = await fetch(`${API_BASE_URL}/api/product/getAllProduct`,
                 {
                     method: "GET",
 
@@ -97,16 +98,25 @@ export default function Product() {
                         <span>
                             Cart
                         </span>
-
-                        {/* <span className="cart-count">
-                                {cartCount}
-                            </span> */}
                     </button>
 
+                    <button
+                        className="header-btn orders-button"
+                        onClick={() => navigate("/orders")}
+                        style={{ background: 'rgba(255, 123, 0,0.9)', border: '1px solid rgba(255, 255, 255, 0.28)', marginLeft: '10px', color: 'white' }}
+                    >
+                        <span className="btn-icon">
+                            📦
+                        </span>
+                        <span>
+                            My Orders
+                        </span>
+                    </button>
 
                     <button
                         className="header-btn logout-button"
                         onClick={logout}
+                        style={{ marginLeft: '10px' }}
                     >
                         <span className="btn-icon">
                             ↪

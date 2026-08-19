@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../adminCss/AdminDashboard.css";
 import "../adminCss/AdminProducts.css";
+import { API_BASE_URL } from "../config";
 
 export default function AdminDashboard() {
     const [dashboardData, setDashboardData] = useState({})
@@ -10,7 +11,7 @@ export default function AdminDashboard() {
         const token = localStorage.getItem("token")
         try {
             setLoading(true)
-            const response = await fetch("https://e-commerce-3x03.onrender.com/api/admin/product/getDashboardData",
+            const response = await fetch(`${API_BASE_URL}/api/admin/product/getDashboardData`,
                 {
                     method: "GET",
 
@@ -97,7 +98,7 @@ export default function AdminDashboard() {
 
                     <div>
                         <span>Total Orders</span>
-                        <h2>1,240</h2>
+                        <h2>{dashboardData.totalOrders !== undefined ? dashboardData.totalOrders : '...'}</h2>
                     </div>
 
                 </div>
@@ -111,7 +112,7 @@ export default function AdminDashboard() {
 
                     <div>
                         <span>Total Revenue</span>
-                        <h2>₹4.52L</h2>
+                        <h2>₹{dashboardData.totalRevenue !== undefined ? dashboardData.totalRevenue.toLocaleString() : '...'}</h2>
                     </div>
 
                 </div>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../config';
 
 export default function Login() {
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ export default function Login() {
 
         try {
             const response = await fetch(
-                'https://e-commerce-3x03.onrender.com/api/auth/login',
+                `${API_BASE_URL}/api/auth/login`,
                 {
                     method: 'POST',
                     headers: {

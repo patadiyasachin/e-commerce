@@ -1,0 +1,212 @@
+.orders-page {
+    min-height: 100vh;
+    background: #0f172a;
+    color: white;
+    padding: 40px 20px;
+}
+
+.orders-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.orders-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.orders-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.home-link-btn {
+    background: transparent;
+    border: 1px solid #334155;
+    color: #cbd5e1;
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.home-link-btn:hover {
+    background: #334155;
+    color: white;
+}
+
+/* Orders List Cards */
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order-card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 20px;
+    padding: 24px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.order-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    border-color: #475569;
+}
+
+.order-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #334155;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+}
+
+.order-meta h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 4px;
+}
+
+.order-date {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+.order-status-badge {
+    padding: 6px 14px;
+    border-radius: 99px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+/* Status Colors (HSL styled) */
+.status-pending { background: rgba(234, 179, 8, 0.15); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.3); }
+.status-confirmed { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+.status-processing { background: rgba(147, 51, 234, 0.15); color: #c084fc; border: 1px solid rgba(147, 51, 234, 0.3); }
+.status-shipped { background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3); }
+.status-out-for-delivery { background: rgba(249, 115, 22, 0.15); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.3); }
+.status-delivered { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
+.status-cancelled { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+
+/* Card Body */
+.order-card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-summary-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.order-items-count {
+    font-size: 15px;
+    color: #cbd5e1;
+}
+
+.order-amount {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+}
+
+.order-payment-status {
+    font-size: 14px;
+    color: #94a3b8;
+}
+
+.order-payment-status strong {
+    color: #cbd5e1;
+}
+
+.view-details-btn {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.view-details-btn:hover {
+    background: #1d4ed8;
+}
+
+/* Empty, Error and Loading States */
+.orders-loading,
+.orders-error,
+.orders-empty {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.orders-loading h2,
+.orders-error h2,
+.orders-empty h2 {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.orders-loading p,
+.orders-error p,
+.orders-empty p {
+    color: #94a3b8;
+    margin-bottom: 24px;
+}
+
+.retry-btn,
+.shop-btn {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.retry-btn:hover,
+.shop-btn:hover {
+    background: #1d4ed8;
+}
+
+@media (max-width: 600px) {
+    .order-card-header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    
+    .order-card-body {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+    }
+    
+    .view-details-btn {
+        width: 100%;
+        text-align: center;
+    }
+}

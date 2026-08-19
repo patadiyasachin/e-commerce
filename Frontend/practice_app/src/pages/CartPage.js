@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import '../css/CartPage.css';
+import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../config';
 
 export default function CartPage() {
+    const navigate = useNavigate();
     const [cart, setCart] = useState({ items: [] });
     const [loading, setLoading] = useState(true);
 
@@ -11,7 +14,7 @@ export default function CartPage() {
     const fetchCart = useCallback(async () => {
         try {
             const response = await fetch(
-                'https://e-commerce-3x03.onrender.com/api/cart',
+                `${API_BASE_URL}/api/cart`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -39,7 +42,7 @@ export default function CartPage() {
         if (quantity < 1) return;
 
         await fetch(
-            'https://e-commerce-3x03.onrender.com/api/cart/update',
+            `${API_BASE_URL}/api/cart/update`,
             {
                 method: 'PUT',
                 headers: {
@@ -59,7 +62,7 @@ export default function CartPage() {
     // Remove item
     const removeItem = async (productId) => {
         await fetch(
-            `https://e-commerce-3x03.onrender.com/api/cart/remove/${productId}`,
+            `${API_BASE_URL}/api/cart/remove/${productId}`,
             {
                 method: 'DELETE',
                 headers: {
@@ -188,7 +191,7 @@ export default function CartPage() {
                             <span>₹{total.toLocaleString()}</span>
                         </div>
 
-                        <button className="checkout-btn">
+                        <button className="checkout-btn" onClick={() => navigate('/checkout')}>
                             Proceed to Checkout
                         </button>
                     </div>

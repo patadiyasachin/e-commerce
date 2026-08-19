@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../config';
 
 export default function Register() {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function Register() {
 
         try {
             const response = await fetch(
-                'https://e-commerce-3x03.onrender.com/api/auth/register',
+                `${API_BASE_URL}/api/auth/register`,
                 {
                     method: 'POST',
                     headers: {
