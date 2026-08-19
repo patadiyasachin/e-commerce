@@ -45,15 +45,34 @@ router.get('/getDashboardData', authMiddleware, adminMiddleware, async (req, res
     try {
         const totalProducts = await Product.countDocuments();
         const totalUsers = await User.countDocuments();
+        const Order = require('../models/Order');
+
+        const totalOrders = await Order.countDocuments();
+        const pendingOrders = await Order.countDocuments({ orderStatus: 'Pending' });
+        const processingOrders = await Order.countDocuments({ orderStatus: 'Processing' });
+        const deliveredOrders = await Order.countDocuments({ orderStatus: 'Delivered' });
+        const cancelledOrders = await Order.countDocuments({ orderStatus: 'Cancelled' });
+
+        const revenueResult = await Order.aggregate([
+            { $match: { orderStatus: { $ne: 'Cancelled' } } },
+            { $group: { _id: null, total: { $sum: '$totalAmount' } } }
+        ]);
+        const totalRevenue = revenueResult.length > 0 ? parseFloat(revenueResult[0].total.toFixed(2)) : 0;
 
         res.status(200).json({
             totalProducts,
-            totalUsers
+            totalUsers,
+            totalOrders,
+            pendingOrders,
+            processingOrders,
+            deliveredOrders,
+            cancelledOrders,
+            totalRevenue
         });
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: error.message
+            message: err.message
         });
     }
 })
